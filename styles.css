@@ -743,24 +743,38 @@ h3 { font-size: clamp(1.05rem, 2vw, 1.25rem); font-weight: 600; }
 /* ============================================
    MOBILE NAV — must come AFTER desktop rules
    ============================================ */
+/* ============================================
+   MOBILE NAVIGATION
+   ============================================ */
 @media (max-width: 860px) {
-  .nav-toggle { display: grid; }
+
+  .nav-toggle {
+    display: grid;
+  }
 
   .primary-nav {
     position: fixed;
     top: var(--header-h);
     left: 0;
     right: 0;
+
     background: #ffffff;
     border-bottom: 1px solid var(--border);
     box-shadow: 0 20px 40px -12px rgba(15,23,42,.18);
-    padding: var(--space-4);
+
+    padding: 1rem;
     z-index: 60;
+
     transform: translateY(-8px);
     opacity: 0;
     pointer-events: none;
     visibility: hidden;
-    transition: opacity .2s ease, transform .2s ease, visibility .2s ease;
+
+    transition:
+      opacity .2s ease,
+      transform .2s ease,
+      visibility .2s ease;
+
     max-height: calc(100vh - var(--header-h));
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
@@ -773,29 +787,70 @@ h3 { font-size: clamp(1.05rem, 2vw, 1.25rem); font-weight: 600; }
     visibility: visible;
   }
 
+  /* Keep every menu item in one equal vertical flow */
   .primary-nav ul {
+    display: flex;
     flex-direction: column;
     align-items: stretch;
-    gap: .25rem;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Equal spacing for ALL navigation links */
+  .primary-nav li {
+    margin: 0;
+    padding: 0;
   }
 
   .primary-nav a {
-    padding: .9rem 1rem;
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+    min-height: 44px;
+
+    padding: .65rem 1rem;
+    margin: 0;
+
     font-size: 1rem;
+    line-height: 1.4;
+
     border-radius: 8px;
+    box-sizing: border-box;
   }
 
+  /* Contact button stays in the same flow */
   .primary-nav .nav-cta {
+    position: static !important;
+    display: flex;
+
+    width: 100%;
+    min-height: 44px;
+
+    margin: .65rem 0 0 !important;
+    padding: .65rem 1rem;
+
+    align-items: center;
+    justify-content: center;
+
     background: var(--accent);
     color: #fff !important;
+
     text-align: center;
-    margin-top: .25rem;
     border-radius: 8px;
+
+    transform: none !important;
   }
 
-  body.nav-open { overflow: hidden; }
-}
+  .primary-nav .nav-cta:hover {
+    background: var(--accent-hover) !important;
+  }
 
+  body.nav-open {
+    overflow: hidden;
+  }
+}
 /* ---------- 320px safety ---------- */
 @media (max-width: 360px) {
   .brand-text { display: none; }
